@@ -6,13 +6,13 @@ interface OrganizationModelProps {
     org: OrganizationModel
 }
 
-function Organization(props: OrganizationModelProps) {
+function Organization({org}: OrganizationModelProps) {
     return (
-        <div>
-            <div className="orgName">{props.org.name}</div>
+        <div className="orgWrapper">
+            <div className="orgHeader">{org.name}</div>
             {
-                props.org.repositories.map(r => (
-                    <Repository key={r.id} orgName={props.org.name} repo={r} isProtected={r.isProtected}  />
+                org.repositories.map(r => (
+                    <Repository key={r.id} orgName={org.name} repo={r} isProtected={r.isProtected}  />
                 ))
             }
         </div>

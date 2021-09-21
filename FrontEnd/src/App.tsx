@@ -6,7 +6,9 @@ function App() {
   const org = useRepositories('argon-challenge-23');
   if (org)
     return (
+      <div className="App">
         <Organization org={org} />
+      </div>
     );
 
   return (<div>Org not found</div>)

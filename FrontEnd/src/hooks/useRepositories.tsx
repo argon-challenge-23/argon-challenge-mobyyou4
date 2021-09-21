@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getReposByOrg } from "../helpers/GitHubAPIHelpers";
+import { getReposByOrg } from "../api/GitHubAPIHelpers";
 import { OrganizationModel } from "../Organization/OrganizationModel";
 
 const useRepositories = (orgName: string) => {
