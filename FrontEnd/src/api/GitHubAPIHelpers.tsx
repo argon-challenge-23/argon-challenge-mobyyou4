@@ -3,7 +3,7 @@ import { RepositoryModel } from "../Repository/RepositoryModel";
 
 
 const url = "http://localhost:51044/api";
-const headersSettings = { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' };
+const headersSettings = { 'Content-Type': 'application/json'};
 
 export async function getReposByOrg(orgName: string) {
     const relativeAddress = `org/${orgName}/repos`;
@@ -26,7 +26,7 @@ function parseOrganization(repos: RepositoryModel[]) {
     }
 }
 
-export async function SetRepoProtectionState(orgName: string, repoName:string, isProtected:boolean){
+export async function setRepoProtectionState(orgName: string, repoName:string, isProtected:boolean){
     const relativeAddress = `org/${orgName}/repo/${repoName}?isProtected=${isProtected}`;
     const requestOptions = {
         method: 'POST', headers: headersSettings

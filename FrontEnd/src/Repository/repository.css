@@ -1,4 +1,66 @@
-.container {
+.repoContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.logoDetailsContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 29px;
+    padding: 1rem;
+}
+
+.repoContainer:hover {
+    background: #FEF2EE;
+    border-radius: 24px;
+}
+
+.logoContainer {
+    border: 1px solid #FFE0D6;
+    border-radius: 40px;
+    box-sizing: border-box;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.repoDetails {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+}
+
+.repositoryHeader {
+    color: #333333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.protectionStatus {
+    font-weight: 600;
+    color: #12121F;
+    font-size: 14px;
+}
+
+.visibilityStatus {
+    color: #828282;
+    font-size: 12px;
+}
+
+.lockContainer {
+    display: flex;
+    cursor: pointer;
+    align-items: flex-end;
+    padding: 10px;
+}
+
+
+/* .container {
     display: flex;
     flex-direction: row;
     margin-left: 15px;
@@ -36,4 +98,4 @@
     color: #fff;
     text-align: center;
     margin-left: 15px;
-}
+} */

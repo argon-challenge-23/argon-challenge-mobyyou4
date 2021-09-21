@@ -1,13 +1,16 @@
-.orgName {
-    font-family: Poppins;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 48px;
-    line-height: 132%;
-    /* identical to box height, or 32px */
+.orgWrapper {
     display: flex;
-    align-items: center;
-    letter-spacing: 0.25px;
-    color: #12121F;
-    flex-direction: row;
+    flex-direction: column;
+    gap: 36px;
+    padding: 32px;
+    background-color: white;
+    border-radius: 24px;
+    max-width: 375px;
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.orgHeader {
+    font-family: Poppins;
+    font-weight: 600;
+    font-size: 24px;
 }
