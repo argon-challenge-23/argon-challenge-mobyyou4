@@ -35,6 +35,7 @@ namespace Infra.Models
         /// <summary>
         /// wheter the repo is protected for visability modification or not
         /// </summary>
+        [JsonPropertyName("isProtected")]
         public bool IsProtected { get; set; }
     }
 }

@@ -2,7 +2,7 @@ import { OrganizationModel } from "../Organization/OrganizationModel";
 import { RepositoryModel } from "../Repository/RepositoryModel";
 
 
-const url = "http://morapi.cherry-stock.com/api";
+const url = "https://morapi.cherry-stock.com/api";
 const headersSettings = { 'Content-Type': 'application/json'};
 
 export async function getReposByOrg(orgName: string) {

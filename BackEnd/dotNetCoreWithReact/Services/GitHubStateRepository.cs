@@ -38,6 +38,17 @@ namespace dotNetCoreWithReact.Services
                 _orgs.Add(orgName, repos.ToDictionary(r => r.Name, r => r));
                 return true;
             }
+            else
+            {
+                repos.ForEach(r => {
+                    if (_orgs[orgName].ContainsKey(r.Name))
+                    {
+                        _orgs[orgName][r.Name].Private = r.Private;
+                    }
+                });
+                
+                
+            }
             return false;
         }
 

@@ -27,32 +27,26 @@ namespace dotNetCoreWithReact.Services
             {
                 return (HttpStatusCode.NotFound, "changed repo didnt found in the server state");
             }
-            if (_stateRepository.isVisibilityStateChanged(repofromState.Private, repoVisibilityChanged.Repository.Private))
+
+            Console.WriteLine($"repo visability was changed: repo:{repofromState.FullName} visability: {repofromState.Private}");
+            if (repofromState.IsProtected)
             {
-                Console.WriteLine($"repo visability was changed: repo:{repofromState.FullName} visability: {repofromState.Private}");
-                if (repofromState.IsProtected)
+                if (_gitHubClient.SetRepoVisibility(repoChanged.Repository.Name, Convert.ToBoolean(!repoChanged.Repository.Private)))
                 {
-                    if (_gitHubClient.SetRepoVisibility(repoChanged.Repository.Name, Convert.ToBoolean(repoChanged.Repository.Private)))
-                    {
-                        Console.WriteLine($"repo:{repofromState.FullName} visability: {repofromState.Private} was reverted");
-                        return (HttpStatusCode.OK, "visibility change prevented");
-                    }
-                    else
-                    {
-                        return (HttpStatusCode.Conflict, "visibility didnt changed");
-                    }
+                    Console.WriteLine($"repo:{repofromState.FullName} visability: {repofromState.Private} was reverted");
+                    return (HttpStatusCode.OK, "visibility change prevented");
                 }
                 else
                 {
-                    repofromState.Private = repoChanged.Repository.Private;
-                    return (HttpStatusCode.OK, "repo is not in protection mode, hence the change is not reverted");
+                    return (HttpStatusCode.InternalServerError, "couldn't prevent visibility change");
                 }
-
             }
             else
             {
-                return (HttpStatusCode.Conflict, "visibility didnt changed");
+                repofromState.Private = repoChanged.Repository.Private;
+                return (HttpStatusCode.OK, "repo is not in protection mode, hence the change is not reverted");
             }
+
         }
 
         /// <summary>
@@ -65,21 +59,15 @@ namespace dotNetCoreWithReact.Services
             if (string.IsNullOrEmpty(orgName))
                 throw new ArgumentNullException("OrgName is missing");
 
-            //try get repo from state
-            var repos = _stateRepository.GetReposByOrg(orgName);
-            if (repos == null)
-            {
-                //retrive repo from github api
-                repos = await _gitHubClient.GetRepositories(orgName);
-
-                //update state
-                _stateRepository.AddReposByOrg(orgName, repos.ToList());
-            }
-
+            //currently there is no support for repo visibility push update besides this get call, so we override the state at every get repo call
+            var repos = await _gitHubClient.GetRepositories(orgName);
             if (repos == null)
             {
                 return (false, null);
             }
+
+            _stateRepository.AddReposByOrg(orgName, repos.ToList());
+            _stateRepository.GetReposByOrg(orgName);
             return (true, repos.AsEnumerable());
         }
     }
