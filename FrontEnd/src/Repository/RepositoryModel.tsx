@@ -2,7 +2,7 @@ export class RepositoryModel {
     id: number;
     name: string;
     fullName: string;
-    isPrivate: boolean;
+    private: boolean;
     isProtected: boolean;
     avatarUrl: string = "Octocat2.png"
     /**
@@ -12,7 +12,7 @@ export class RepositoryModel {
         this.id = id;
         this.name = name;
         this.fullName = fullName;
-        this.isPrivate = isPrivate;
+        this.private = isPrivate;
         this.isProtected = isProtected;
     }
 }

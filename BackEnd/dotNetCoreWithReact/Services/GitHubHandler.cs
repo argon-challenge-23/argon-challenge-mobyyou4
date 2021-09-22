@@ -44,6 +44,7 @@ namespace dotNetCoreWithReact.Services
                 }
                 else
                 {
+                    repofromState.Private = repoChanged.Repository.Private;
                     return (HttpStatusCode.OK, "repo is not in protection mode, hence the change is not reverted");
                 }
 

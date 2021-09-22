@@ -35,7 +35,7 @@ function Repository(props: repositoryModelProps) {
                 <div className="repoDetails">
                     <div>
                         <div className="repositoryHeader">{props.repo.name}</div>
-                        <div className="visibilityStatus">{props.repo.isPrivate ? "private" : "public"}</div>
+                        <div className="visibilityStatus">{props.repo.private ? "private" : "public"}</div>
                     </div>
 
                     <div className="protectionStatus">
