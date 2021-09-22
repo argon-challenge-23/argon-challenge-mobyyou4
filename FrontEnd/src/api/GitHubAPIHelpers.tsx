@@ -2,7 +2,7 @@ import { OrganizationModel } from "../Organization/OrganizationModel";
 import { RepositoryModel } from "../Repository/RepositoryModel";
 
 
-const url = "http://localhost:51044/api";
+const url = "http://mor.kavanu.co/api";
 const headersSettings = { 'Content-Type': 'application/json'};
 
 export async function getReposByOrg(orgName: string) {
