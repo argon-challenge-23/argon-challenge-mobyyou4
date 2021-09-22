@@ -46,7 +46,7 @@ function Repository(props: repositoryModelProps) {
 
             <div className="lockContainer" >
                 <div onClick={handleProtectionStateChanged}>
-                    {protection ? <LockOpen /> : <LockClosed />}
+                    {protection ? <LockClosed /> : <LockOpen />}
                 </div>
             </div>
         </div>
